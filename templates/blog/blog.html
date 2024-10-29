@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container-blog">
+    <h2 class="text-center">Blog Post</h2>
+
+    <!-- Blog Posts -->
+    <div class="card-container">
+        {% for blog in blogs %}
+            <div class="card blog-card">
+                <h3>{{ blog.title }}</h3>
+                <p>{{ blog.content }}</p>
+                <p>Posted on: {{ blog.published_date }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Suppliers and Products -->
+    <h2 class="text-center">Suppliers and Their Products</h2>
+    {% for supplier in suppliers %}
+    <div class="supplier-section">
+        <h3>{{ supplier.name }}</h3>
+        <p>Contact: {{ supplier.contact_info }}</p>
+        <p>Address: {{ supplier.address }}</p>
+
+        <div class="card-container">
+            {% for product in products %}
+                {% if product.supplier == supplier %}
+                    <div class="card product-card">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                        <h5>{{ product.name }}</h5>
+                        <p>{{ product.description }}</p>
+                        <p>Price: {{ product.price }}</p>
+                        <p>Contact: {{ product.contact_details }}</p>
+                        <a href="{% url 'order_product' product.id %}" class="btn btn-success">Order Now</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

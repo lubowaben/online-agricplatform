@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h2>Dashboard</h2>
+
+<!-- Suppliers List -->
+<h3>Suppliers</h3>
+<div class="supplier-list">
+    {% for supplier in suppliers %}
+        <div class="supplier-card">
+            <h4>{{ supplier.name }}</h4>
+            <p>Contact: {{ supplier.contact_info }}</p>
+            <p>Address: {{ supplier.address }}</p>
+        </div>
+    {% empty %}
+        <p>No suppliers available.</p>
+    {% endfor %}
+</div>
+
+<!-- Notifications -->
+<h3>Notifications</h3>
+<div class="notification-list">
+    {% for notification in notifications %}
+        <div class="notification-card">
+            <p>{{ notification.message }}</p>
+            <p><small>{{ notification.created_at }}</small></p>
+        </div>
+    {% empty %}
+        <p>No notifications.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Order Confirmation</h1>
+    <p>Thank you for your order!</p>
+    <p>You have successfully placed an order for <strong>{{ product.name }}</strong>.</p>
+    <p>Price: ${{ product.price }}</p>
+    <p>Quantity: 1</p>
+    <p>We will notify the supplier and update you once your order is processed.</p>
+
+    <a href="{% url 'home' %}" class="btn">Return to Home</a>
+</div>
+{% endblock %}

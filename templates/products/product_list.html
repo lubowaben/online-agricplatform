@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <h2>Product List</h2>
+  <ul>
+      {% for product in products %}
+        <li>
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <p>Price: {{ product.price }}</p>
+          {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" width="100">
+          {% endif %}
+          <p>Contact: {{ product.contact_details }}</p>
+          <a href="{% url 'update_product' product.pk %}">Edit</a>
+        </li>
+      {% endfor %}
+  </ul>
+{% endblock %}

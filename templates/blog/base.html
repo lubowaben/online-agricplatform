@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}VeggieHub{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/main.js' %}" defer></script>
+</head>
+<body>
+  <header>
+    <nav>
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo">
+        </div>
+        <div class="toggle-nav">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+        </ul>
+        <div class="search-icon">
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="search-bar">
+            <form action="{% url 'product_search' %}" method="get">
+                <input type="text" name="q" placeholder="Search...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <ul class="auth-links">
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' %}">{{ user.username }}</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+  <div class="main-content">
+    <main>
+        {% block content %}                                                                             
+        <!-- Main content goes here -->
+        {% endblock %}
+    </main>
+  </div>
+
+
+  <footer>
+    <p>&copy; 2024 VeggieHub. All rights reserved.</p>
+  </footer>
+</body>
+</html>

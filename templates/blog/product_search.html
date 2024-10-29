@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+    <h1>Search Results for "{{ query }}"</h1>
+    <section>
+        {% if products %}
+            <ul>
+                {% for product in products %}
+                    <li>{{ product.name }} - {{ product.price }} - {{ product.category }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No products found matching "{{ query }}".</p>
+        {% endif %}
+    </section>
+{% endblock %}
